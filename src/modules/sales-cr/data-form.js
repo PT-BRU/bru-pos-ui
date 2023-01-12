@@ -71,8 +71,9 @@ export class DataForm {
       if (dataItems[k].itemId !== "") {
         if (dataItems[k].itemCode === item.itemCode) {
           isDuplicate = true;
-          item.itemCode = "";
-          this.error.items[itemIndex].itemCode = "Barcode has been added";
+          dataItems[k].quantity++;
+          // item.itemCode = "";
+          // this.error.items[itemIndex].itemCode = "Barcode has been added";
           break;
         }
       }
@@ -254,6 +255,8 @@ export class DataForm {
         item.itemCode = item.itemCode;
         if (e.key !== "Enter") {
           item.itemCode = item.itemCode + e.key;
+        } else {
+          this.rearrangeItem(true);
         }
       }
     }
